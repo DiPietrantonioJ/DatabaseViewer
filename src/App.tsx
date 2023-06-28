@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <main className="bg-black w-full h-full absolute flex flex-col justify-between items-center text-white p-2 pt-3 open-sans">
+      <main className="bg-black w-full h-full absolute flex flex-col justify-between items-center text-white open-sans">
         <Header/>
         <div className="w-full h-full flex flex-row justify-center items-center">
           <Menu/>
