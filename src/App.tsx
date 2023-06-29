@@ -1,20 +1,17 @@
+import { useState } from 'react';
 import './App.css';
-import Footer from './components/footer';
-import Header from './components/header';
-import Menu from './components/menu';
-import Home from './components/sections/home';
+import Welcome from './components/sections/welcome';
+import Main from './components/sections/main';
 
 function App() {
+
+  const [screen, setScreen] = useState("welcome")
 
   return (
     <>
       <main className="bg-black w-full h-full absolute flex flex-col justify-between items-center text-white open-sans">
-        <Header/>
-        <div className="w-full h-full flex flex-row justify-center items-center">
-          <Menu/>
-          <Home/>
-        </div>
-        <Footer/>
+        {screen == "welcome" && <Welcome setScreen={setScreen}/>}
+        {screen == "mainapp" && <Main/>}
       </main>
     </>
   )
