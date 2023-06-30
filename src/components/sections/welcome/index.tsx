@@ -14,7 +14,7 @@ function Welcome(props: {setScreen: any}) {
     function nextStep() {
         setOpacity("opacity-0");
         setTimeout(() => {
-            props.setScreen("mainapp");
+            props.setScreen("firstconfig");
         }, 500);
     }
 
@@ -27,9 +27,10 @@ function Welcome(props: {setScreen: any}) {
             <div className="flex flex-col justify-center items-center gap-6">
                 <p className="text-sm text-center max-w-[500px]">
                     This is the first time running DatabaseViewer on this system. <br />
-                    We need to configure your first database, which will also be used to store the basic data of DatabaseViewer.
+                    We need to configure your first database, which will also be used to store the basic data of DatabaseViewer.<br/>
+                    You will need a running database engine, a user with permissions to create a new database, permissions to read the database you want to list and basic knowledge.
                 </p>
-                <Button onClick={nextStep} argument="">Next</Button>
+                <Button onClick={nextStep} argument="">Begin</Button>
             </div>
         </section>
     )
