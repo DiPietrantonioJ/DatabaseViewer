@@ -10,17 +10,21 @@ function FirstConfig(props: { setScreen: any }) {
     const [opacity, setOpacity] = useState("opacity-0");
     const [nextOpacity, setNextOpacity] = useState("opacity-0");
     const [success, isSuccess] = useState(false);
-    const [errorMsg, setErrorMsg] = useState("");
+    const [nextDisabled, setNextDisabled] = useState(true);
+
 
     useEffect(() => {
         setTimeout(() => {
             setOpacity("opacity-100");
-        }, 1000);
+        }, 500);
     }, [])
 
     useEffect(() => {
         if (success) {
-
+            setTimeout(() => {
+                setNextOpacity("opacity-100");
+                setNextDisabled(false);
+            }, 50);
         }
     }, [success])
 
@@ -33,28 +37,25 @@ function FirstConfig(props: { setScreen: any }) {
 
     function tryConnection() {
         isSuccess(true);
-        setTimeout(() => {
-            setNextOpacity("opacity-100");
-        }, 50);   
     }
 
     return (
         <section className={`${opacity} w-full h-full flex flex-col justify-center items-center gap-12 duration-500`}>
-            <h2 className="text-3xl duration-300">Configure your database engine</h2>
-            <Select placeholder="Select your database" options={options} />
-            <div className="flex flex-row justify-center items-end gap-4">
-                <InputText className="" type="text" label="URL" id="url" placeholder="https://example.com/" />
-                <InputText className="" type="text" label="User" id="user" placeholder="admin" />
-                <InputText className="" type="password" label="Password" id="pass" placeholder="123456" />
-                <InputText className="" type="text" label="Table" id="table" placeholder="Table name" />
-                <Button onClick={tryConnection} argument="">Try connection</Button>
-            </div>
-            {success &&
-                <div className={`${nextOpacity} flex flex-col justify-center items-center duration-500`}>
-                    <p>Connection Success, click next to create the application database.</p>
-                    <Button onClick={nextStep} argument="">Next</Button>
+            <div className="w-[600px] flex flex-col justify-center gap-12 items-center">
+                <h2 className="text-3xl duration-300">Configure your database engine</h2>
+                <Select className="w-full" placeholder="Select your database" options={options} />
+                <div className="flex flex-col justify-center items-center gap-4 w-full">
+                    <InputText className="w-full" type="text" label="URL" id="url" placeholder="https://example.com/" />
+                    <InputText className="w-full" type="text" label="User" id="user" placeholder="admin" />
+                    <InputText className="w-full" type="password" label="Password" id="pass" placeholder="123456" />
+                    <InputText className="w-full" type="text" label="Table name for DatabaseViewer" id="table" placeholder="Name" />
+                    <Button disabled={false} onClick={tryConnection} argument="">Try connection</Button>
                 </div>
-            }
+                <div className={`flex flex-col gap-4 justify-center items-center duration-500`}>
+                    <p className={`${nextOpacity} duration-500`}>Connection Success, click next to create the application database.</p>
+                    <Button disabled={nextDisabled} onClick={nextStep} argument="">Next</Button>
+                </div>
+            </div>
         </section>
     )
 }

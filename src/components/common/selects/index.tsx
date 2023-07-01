@@ -1,4 +1,4 @@
-function Select(props: { placeholder: string, options: any }) {
+function Select(props: { placeholder: string, options: any, className: string }) {
 
     function buildOptions() {
         const options: any = [];
@@ -10,7 +10,7 @@ function Select(props: { placeholder: string, options: any }) {
     }
 
     return (
-        <select className="py-2 px-4 bg-neutral-900 border-2 border-neutral-800 rounded-lg">
+        <select className={`${props.className} py-2 px-4 bg-neutral-900 border-2 border-neutral-800 rounded-lg hover:border-neutral-700 hover:bg-neutral-800 duration-300`}>
             {buildOptions()}
         </select>
     )
