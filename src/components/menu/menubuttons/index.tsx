@@ -1,7 +1,8 @@
 import { SiPostgresql, SiMysql, SiOracle, SiSqlite, SiMongodb, SiMariadb, SiSupabase, SiMicrosoftsqlserver } from "@icons-pack/react-simple-icons";
 import { RiBarChartFill, RiTableFill } from "react-icons/ri";
+import Button from "../../common/buttons";
 
-function DatabaseButton(props: { label: string, databaseType: string }) {
+function DatabaseButton(props: { label: string, databaseType: string, setSelectedMenu: any }) {
 
     return (
         <div className="w-full rounded-lg bg-neutral-900 duration-300 flex flex-row justify-between items-center py-1 px-2 border-2 border-neutral-800">
@@ -10,8 +11,20 @@ function DatabaseButton(props: { label: string, databaseType: string }) {
                 <p>{props.label}</p>
             </div>
             <div className="flex flex-row justify-center items-center">
-                <button className="hover:bg-black pl-1 pr-1 border-2 border-r py-1 border-neutral-800 rounded-l-lg duration-300"><RiTableFill size={16}/></button>
-                <button className="hover:bg-black pl-1 pr-1 border-2 border-l py-1 border-neutral-800 rounded-r-lg duration-300"><RiBarChartFill size={16}/></button>
+                <Button
+                    className="hover:bg-black pl-1 pr-1 border-2 border-r !py-1 border-neutral-800 rounded-l-lg rounded-r-none duration-300"
+                    onClick={props.setSelectedMenu}
+                    argument={"table"}
+                    disabled={false} >
+                    <RiTableFill size={16} />
+                </Button>
+                <Button
+                    className="hover:bg-black pl-1 pr-1 border-2 border-l !py-1 border-neutral-800 rounded-r-lg rounded-l-none duration-300"
+                    onClick={props.setSelectedMenu}
+                    argument={"graphs"}
+                    disabled={false} >
+                    <RiBarChartFill size={16} />
+                </Button>
             </div>
         </div>
     )

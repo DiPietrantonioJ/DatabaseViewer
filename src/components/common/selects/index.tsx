@@ -1,17 +1,29 @@
+import { useEffect, useState } from "react";
+
 function Select(props: { placeholder: string, options: any, className: string }) {
+
+    const [selectOptions, setSelectOptions] = useState([]);
 
     function buildOptions() {
         const options: any = [];
-        options.push(<option value="">{props.placeholder}</option>)
-        props.options.forEach((option: string, index: number) => {
-            options.push(<option key={index} value={option}>{option}</option>)
+        if (props.placeholder != "") {
+            options.push(props.placeholder);
+        }
+        props.options.forEach((option: string) => {
+            options.push(option);
         });
         return options;
     }
 
+    useEffect(() => {
+        setSelectOptions(buildOptions());
+    }, [props.options])
+
     return (
         <select className={`${props.className} py-2 px-4 bg-neutral-900 border-2 border-neutral-800 rounded-lg hover:border-neutral-700 hover:bg-neutral-800 duration-300`}>
-            {buildOptions()}
+            {selectOptions.map((element:string, index:number) => {
+                return (<option key={index} value={element}>{element}</option>)
+            })}
         </select>
     )
 }
