@@ -12,7 +12,7 @@ function Main() {
         <>
             <Header />
             <div className={`w-full h-full relative flex flex-row justify-center items-center duration-500`}>
-                <Menu setSelectedMenu={setSelectedMenu} selectedMenu={selectedMenu}/>
+                <Menu databases={""} setSelectedMenu={setSelectedMenu} selectedMenu={selectedMenu} setDatabase={undefined}/>
                 <Home selectedMenu={selectedMenu}/>
             </div>
             <Footer />

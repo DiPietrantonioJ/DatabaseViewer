@@ -30,7 +30,7 @@ function Welcome(props: {setScreen: any}) {
                     We need to configure your first database, which will also be used to store the basic data of DatabaseViewer.<br/>
                     You will need a running database engine, a user with permissions to create a new database, permissions to read the database you want to list and basic knowledge.
                 </p>
-                <Button onClick={nextStep} argument="" disabled={false}>Begin</Button>
+                <Button onClick={nextStep} argument="" disabled={false} className="">Begin</Button>
             </div>
         </section>
     )

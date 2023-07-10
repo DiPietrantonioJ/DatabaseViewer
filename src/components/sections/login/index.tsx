@@ -36,7 +36,7 @@ function Login(props: {setScreen: any, setCurrentUser: any}) {
                     <InputText className="w-full" type="text" label="User" id="user" placeholder="admin" />
                     <InputText className="w-full" type="password" label="Password" id="pass" placeholder="123456" />
                     <p className={`${labelOpacity} duration-500 text-red-500`}>Incorrect username or password</p>
-                    <Button disabled={false} onClick={tryLogin} argument="">Login</Button>
+                    <Button disabled={false} onClick={tryLogin} argument="" className="">Login</Button>
                 </div>
             </div>
         </section>

@@ -2,7 +2,12 @@ import { SiPostgresql, SiMysql, SiOracle, SiSqlite, SiMongodb, SiMariadb, SiSupa
 import { RiBarChartFill, RiTableFill } from "react-icons/ri";
 import Button from "../../common/buttons";
 
-function DatabaseButton(props: { label: string, databaseType: string, setSelectedMenu: any }) {
+function DatabaseButton(props: { label: string, databaseType: string, setSelectedMenu: any, setDatabase: any, database: any }) {
+
+    function setData(button:string) {
+        props.setSelectedMenu(button);
+        props.setDatabase(props.database);
+    }
 
     return (
         <div className="w-full rounded-lg bg-neutral-900 duration-300 flex flex-row justify-between items-center py-1 px-2 border-2 border-neutral-800">
@@ -13,14 +18,14 @@ function DatabaseButton(props: { label: string, databaseType: string, setSelecte
             <div className="flex flex-row justify-center items-center">
                 <Button
                     className="hover:bg-black pl-1 pr-1 border-2 border-r !py-1 border-neutral-800 rounded-l-lg rounded-r-none duration-300"
-                    onClick={props.setSelectedMenu}
+                    onClick={setData}
                     argument={"table"}
                     disabled={false} >
                     <RiTableFill size={16} />
                 </Button>
                 <Button
                     className="hover:bg-black pl-1 pr-1 border-2 border-l !py-1 border-neutral-800 rounded-r-lg rounded-l-none duration-300"
-                    onClick={props.setSelectedMenu}
+                    onClick={setData}
                     argument={"graphs"}
                     disabled={false} >
                     <RiBarChartFill size={16} />

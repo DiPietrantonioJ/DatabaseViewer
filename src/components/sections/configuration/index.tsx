@@ -49,11 +49,11 @@ function FirstConfig(props: { setScreen: any }) {
                     <InputText className="w-full" type="text" label="User" id="user" placeholder="admin" />
                     <InputText className="w-full" type="password" label="Password" id="pass" placeholder="123456" />
                     <InputText className="w-full" type="text" label="Table name for DatabaseViewer" id="table" placeholder="Name" />
-                    <Button disabled={false} onClick={tryConnection} argument="">Try connection</Button>
+                    <Button disabled={false} onClick={tryConnection} argument="" className="">Try connection</Button>
                 </div>
                 <div className={`flex flex-col gap-4 justify-center items-center duration-500`}>
                     <p className={`${nextOpacity} duration-500`}>Connection Success, click next to create the application database.</p>
-                    <Button disabled={nextDisabled} onClick={nextStep} argument="">Next</Button>
+                    <Button disabled={nextDisabled} onClick={nextStep} argument="" className="">Next</Button>
                 </div>
             </div>
         </section>
