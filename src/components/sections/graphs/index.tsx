@@ -8,9 +8,15 @@ function Graphs(props: { close: string, data: any }) {
 
     const [opacity, setOpacity] = useState("opacity-0");
     const [columnNames, setColumnNames] = useState([]);
+    const [type, setType] = useState("");
+    const [graph, setGraph] = useState("");
+    const [column, setColumn] = useState("");
 
     useEffect(() => {
-        setOpacity('opacity-100');
+        setOpacity('opacity-0');
+        setTimeout(() => {
+            setOpacity('opacity-100');
+          }, 100);
     }, [])
 
     useEffect(() => {
@@ -25,6 +31,12 @@ function Graphs(props: { close: string, data: any }) {
         setColumnNames(auxNames);
     }, [props.data])
 
+    useEffect(() => {
+        console.log(type);
+        console.log(graph);
+        console.log(column);
+    }, [type, graph, column])
+
     return (
         <>
             <div className={`${opacity} duration-500 w-full h-full flex flex-col text-xs justify-start items-center overflow-y-scroll scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-black`}>
@@ -32,9 +44,9 @@ function Graphs(props: { close: string, data: any }) {
                     <div className='flex flex-row justify-between items-center gap-8 w-full text-sm'>
                         <h2 className='text-2xl'>Settings</h2>
                         <div className='flex flex-row justify-center items-center gap-4'>
-                            <Select placeholder={''} options={Types} className={'w-[150px]'} />
-                            <Select placeholder={''} options={Graphs} className={'w-[150px]'} />
-                            <Select placeholder={'Column'} options={columnNames} className={'w-[150px]'} />
+                            <Select onChange={setType} placeholder={''} options={Types} className={'w-[150px]'} />
+                            <Select onChange={setGraph} placeholder={''} options={Graphs} className={'w-[150px]'} />
+                            <Select onChange={setColumn} placeholder={'Column'} options={columnNames} className={'w-[150px]'} />
                         </div>
                     </div>
                 </div>

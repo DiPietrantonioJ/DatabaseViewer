@@ -4,7 +4,7 @@ function TableHeader(props: {
 
     return (
         <>
-            <div className="text-center w-full">
+            <div className="text-center w-full capitalize">
                 {props.name}
             </div>
         </>

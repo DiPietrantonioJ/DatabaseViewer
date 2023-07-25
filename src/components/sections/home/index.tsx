@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import Table from "../table"
 import Loading from "../loading";
 import Graphs from "../graphs";
-import data from './test.json';
+import testData from './test.json'
 
-function Home(props: {selectedMenu: string}) {
-    
+function Home(props: {
+    postFunction: any; selectedMenu: string, selectedDatabase: number, databases: any
+}) {
+
     const [opacity, setOpacity] = useState("opacity-0");
     const [loaded, isLoaded] = useState(false);
     const [close, setClose] = useState("opacity-100");
     const [show, setShow] = useState("");
+    const [data, setData] = useState<any>(undefined);
 
     useEffect(() => {
+        setData(testData);
         setShow(props.selectedMenu);
         setTimeout(() => {
             setOpacity("opacity-100");
@@ -40,14 +44,33 @@ function Home(props: {selectedMenu: string}) {
         }, 1000);
     }, [props.selectedMenu])
 
+    useEffect(() => {
+        setClose("opacity-0");
+        props.postFunction(
+            props.databases[props.selectedDatabase].handlerUrl,
+            [
+                { name: "action", value: "data" }
+            ]
+        ).then((response: any) => {
+            console.log(response);
+            if (response.data?.table.length > 0 && response.data?.data.length > 0) {
+                setData(response.data);
+            }
+            setShow(props.selectedMenu);
+            setClose("opacity-100");
+        })
+    }, [props.selectedDatabase])
+
     return (
-        
+
         <section className={`${opacity} duration-500 h-full w-full flex justify-center items-center p-4 pt-14 pb-9`}>
-            <div className="h-full w-full overflow-hidden border-2 border-neutral-800 pb-10 rounded-md">
-                {show == "table" && <Table data={data} close={close}/>}
-                {show == "graphs" && <Graphs data={data} close={close} />}
-                {(show == "" && show == undefined) && <Loading loading={!loaded} doneLoading={contentAnimation}/> }
-            </div>
+            {data !== undefined &&
+                <div className="h-full w-full overflow-hidden border-2 border-neutral-800 pb-10 rounded-md">
+                    {show == "table" && <Table data={data} close={close} />}
+                    {show == "graphs" && <Graphs data={data} close={close} />}
+                    {(show == "" && show == undefined) && <Loading loading={!loaded} doneLoading={contentAnimation} />}
+                </div>
+            }
         </section>
     )
 }

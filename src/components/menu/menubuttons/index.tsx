@@ -13,7 +13,7 @@ function DatabaseButton(props: { label: string, databaseType: string, setSelecte
         <div className="w-full rounded-lg bg-neutral-900 duration-300 flex flex-row justify-between items-center py-1 px-2 border-2 border-neutral-800">
             <div className="flex flex-row justify-center items-center gap-2">
                 <ButtonIcon databaseType={props.databaseType} size={20} />
-                <p>{props.label}</p>
+                <p className="text-sm px-2">{props.label}</p>
             </div>
             <div className="flex flex-row justify-center items-center">
                 <Button

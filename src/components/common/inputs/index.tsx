@@ -1,4 +1,6 @@
-export function InputText(props: { placeholder: string, label: string, id: string, className: string, type: string }) {
+export function InputText(props: {onChange: any, placeholder: string, label: string, id: string, className: string, type: string }) {
+
+
 
     return (
         <div className="flex flex-col justify-center items-start w-full">
@@ -6,6 +8,7 @@ export function InputText(props: { placeholder: string, label: string, id: strin
                 {props.label}
             </label>
             <input
+                onChange={(e) => props.onChange(e.target.value)}
                 id={props.id}
                 name={props.id}
                 placeholder={props.placeholder}
