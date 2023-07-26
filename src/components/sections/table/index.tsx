@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import TableHeader from './header'
 import TableRow from './rows'
+import ExportButton from '../../common/excelExport';
 
 
 function Table(props: { close: string, data: any }) {
@@ -38,9 +39,11 @@ function Table(props: { close: string, data: any }) {
                         return <TableRow key={index} object={column} />
                     })}
                 </div>
+                <div className='absolute right-7 bottom-12'>
+                    <ExportButton data={props.data.data} className={''} />
+                </div>
             </>}
         </>
-
     )
 }
 
