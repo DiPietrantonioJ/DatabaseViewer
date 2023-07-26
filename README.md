@@ -1,6 +1,4 @@
-# DatabaseViewer
-A friendly frontend for showing data to non-technical users.
+# Actually in Development
 
-### Actually in Development
-
-At this time, this is only a skeleton of what should be.
+## DatabaseViewer
+A friendly frontend for display data to non-technical users.
