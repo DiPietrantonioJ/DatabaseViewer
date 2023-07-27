@@ -1,8 +1,5 @@
 <?php
 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-
 $servername = "{{SERVER}}";
 $username = "{{USER}}";
 $password = "{{PASSWORD}}";
@@ -14,7 +11,7 @@ function getTableDescription($table)
     global $servername, $username, $password, $dbname;
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8mb4", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $stmt = $conn->prepare("DESCRIBE $table");
@@ -55,7 +52,7 @@ function getTableData($table)
     global $servername, $username, $password, $dbname;
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8mb4", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $stmt = $conn->prepare("SELECT * FROM $table");

@@ -1,8 +1,5 @@
 <?php
 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-
 if ($_POST['action'] == "check") {
     if ($_POST['engine'] == "mysql") {
         $conn = new mysqli($_POST['servername'], $_POST['username'], $_POST['password']);

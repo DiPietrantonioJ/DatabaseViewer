@@ -65,7 +65,7 @@ function Home(props: {
 
         <section className={`${opacity} duration-500 h-full w-full flex justify-center items-center p-4 pt-14 pb-9`}>
             {data !== undefined &&
-                <div className="h-full w-full overflow-hidden border-2 border-neutral-800 pb-10 rounded-md">
+                <div className="h-full w-full border-2 border-neutral-800 rounded-md">
                     {show == "table" && <Table data={data} close={close} />}
                     {show == "graphs" && <Graphs data={data} close={close} />}
                     {(show == "" && show == undefined) && <Loading loading={!loaded} doneLoading={contentAnimation} />}

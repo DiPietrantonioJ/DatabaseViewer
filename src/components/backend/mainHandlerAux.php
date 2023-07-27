@@ -1,8 +1,5 @@
 <?php
 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-
 $user = $_POST['username'];
 $password = $_POST['password'];
 

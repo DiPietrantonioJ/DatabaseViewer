@@ -1,8 +1,5 @@
 <?php
 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-
 if ($_POST['action'] == "checkFirstTime") {
     if (is_file("mainHandler.php")) {
         echo false;
