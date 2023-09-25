@@ -19,7 +19,7 @@ function Footer() {
                 About this software
             </a>
             <p>|</p>
-            <p>v0.0.1 Alpha</p>
+            <p>v0.0.2 Alpha</p>
         </footer>
     )
 }

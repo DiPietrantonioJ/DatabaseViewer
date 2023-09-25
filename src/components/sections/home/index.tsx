@@ -13,6 +13,8 @@ function Home(props: {
     const [close, setClose] = useState("opacity-100");
     const [show, setShow] = useState("");
     const [data, setData] = useState<any>(undefined);
+    const [columnFilter, setColumnFilter] = useState("");
+    const [columnFilterValues, setColumnFilterValues] = useState("");
 
     useEffect(() => {
         setData(testData);
@@ -61,13 +63,35 @@ function Home(props: {
         })
     }, [props.selectedDatabase])
 
+    function refreshData() {
+        props.postFunction(
+            props.databases[props.selectedDatabase].handlerUrl,
+            [
+                { name: "action", value: "data" }
+            ]
+        ).then((response: any) => {
+            console.log(response);
+            if (response.data?.table.length > 0 && response.data?.data.length > 0) {
+                setData(response.data);
+            }
+        })
+    }
+
     return (
 
         <section className={`${opacity} duration-500 h-full w-full flex justify-center items-center p-4 pt-14 pb-9`}>
             {data !== undefined &&
                 <div className="h-full w-full border-2 border-neutral-800 rounded-md">
-                    {show == "table" && <Table data={data} close={close} />}
-                    {show == "graphs" && <Graphs data={data} close={close} />}
+                    {show == "table" && <Table
+                        setColumnFilter={setColumnFilter}
+                        setColumnFilterValues={setColumnFilterValues}
+                        data={data}
+                        close={close}
+                        columnFilter={columnFilter}
+                        columnFilterValues={columnFilterValues}
+                        refreshData={refreshData}
+                    />}
+                    {show == "graphs" && <Graphs data={data} close={close} refreshData={refreshData}/>}
                     {(show == "" && show == undefined) && <Loading loading={!loaded} doneLoading={contentAnimation} />}
                 </div>
             }

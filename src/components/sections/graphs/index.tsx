@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import Select from '../../common/selects';
 import Chart from 'react-google-charts';
+import Button from '../../common/buttons';
+import { RiRefreshLine } from 'react-icons/ri';
 
-function Graphs(props: { close: string, data: any }) {
+function Graphs(props: { refreshData: any, close: string, data: any }) {
 
     const Graphs = ["Bars", "Pie"];
 
@@ -68,6 +70,9 @@ function Graphs(props: { close: string, data: any }) {
                         <div className='flex flex-row justify-center items-center gap-4'>
                             <Select onChange={setGraph} placeholder={''} options={Graphs} className={'w-[150px]'} />
                             <Select onChange={setColumn} placeholder={'Column'} options={columnNames} className={'w-[150px]'} />
+                            <Button onClick={props.refreshData} argument={undefined} disabled={false} className={''}>
+                                <RiRefreshLine size="24"/>
+                            </Button>
                         </div>
                     </div>
                 </div>
